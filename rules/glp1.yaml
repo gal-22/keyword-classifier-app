@@ -1,0 +1,76 @@
+skiprows: 2
+min_volume: 100
+seed: 42
+k_topics: auto
+min_df: 2
+embedding_model: all-MiniLM-L6-v2
+keep_cols:
+- Keyword
+- Currency
+- Avg. monthly searches
+- Competition
+- Competition (indexed value)
+- Top of page bid (low range)
+- Top of page bid (high range)
+intents:
+- name: Safety / Side Effects
+  regex: (side effects|side-effect|adverse|risks|risk|safe|safety|danger|warning|contraindications|black
+    box|danger|dangerous)
+- name: Price / Cost
+  regex: (price|cost|pricing|how much|insurance|copay|without insurance|coverage|total
+    cost)
+- name: Comparison / Alternatives
+  regex: (best|top|compare|comparison|vs|versus|better than|alternative|ranking|recommended)
+- name: Reviews / Trust
+  regex: (reviews?|reddit|trustpilot|scam|legit|rating)
+- name: Eligibility / Qualification
+  regex: (eligible|eligibility|qualify|requirements|criteria|approval)
+- name: Logistics / How to use
+  regex: (dosage|dose|instructions|how to inject|schedule|pen|needle)
+- name: Education / What is
+  regex: (what is|definition|meaning|explained|mechanism)
+- name: Purchase
+  regex: (buy|order|get|purchase|clinic|provider|prescription|online|pharmacy|shipping|near
+    me)
+- name: Treatment / Solution
+  regex: (injection|shot|medication|medicine|drug|treatment|therapy)
+- name: General Weight Loss
+  regex: (weight loss|lose weight|obesity|slimming)
+bands:
+  Purchase:
+  - 70
+  - 100
+  Treatment / Solution:
+  - 70
+  - 100
+  Price / Cost:
+  - 70
+  - 100
+  Comparison / Alternatives:
+  - 70
+  - 100
+  General Weight Loss:
+  - 40
+  - 70
+  Eligibility / Qualification:
+  - 40
+  - 70
+  Reviews / Trust:
+  - 40
+  - 70
+  Safety / Side Effects:
+  - 10
+  - 40
+  Logistics / How to use:
+  - 10
+  - 40
+  Education / What is:
+  - 10
+  - 40
+  Other:
+  - 10
+  - 40
+bonus_weights:
+  cheapness: 0.45
+  volume: 0.35
+  competition: 0.2

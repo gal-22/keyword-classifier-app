@@ -1,0 +1,12 @@
+version: 1
+
+defaults:
+  outputs_root: output
+  logs_root: logs
+  min_volume: 100
+
+niches:
+  glp1:
+    config: rules/glp1.yaml
+    input_glob: input/glp1/**/*.csv
+    output_subdir: glp1

@@ -1,0 +1,84 @@
+niche: hysa
+
+raw:
+  keep_cols:
+    - Keyword
+    - Avg. monthly searches
+    - Competition
+    - Top of page bid (low range)
+    - Top of page bid (high range)
+
+filters:
+  min_volume: 100
+
+intent_priority:
+
+  # --------------------
+  # HIGH INTENT
+  # --------------------
+
+  - intent: "Open Account"
+    tier: "High"
+    patterns:
+      - '\b(open|apply|sign up|signup|create)\b.*\b(high yield|hysa|savings)\b'
+      - '\b(high yield|hysa)\b.*\b(open|apply|sign up|signup)\b'
+
+  - intent: "Best HYSA"
+    tier: "High"
+    patterns:
+      - '\b(best|top)\b.*\b(high yield|hysa|savings account)\b'
+      - '\b(high yield savings)\b.*\b(best|top)\b'
+
+  - intent: "Rate Focused"
+    tier: "High"
+    patterns:
+      - '\b(apy|apys|interest rate|rates|yield)\b.*\b(high yield|hysa|savings)\b'
+
+  # --------------------
+  # MEDIUM INTENT
+  # --------------------
+
+  - intent: "Comparison"
+    tier: "Medium"
+    patterns:
+      - '\b(vs|versus|compare|comparison)\b'
+
+  - intent: "Promotions"
+    tier: "Medium"
+    patterns:
+      - '\b(bonus|promotion|offer|cash bonus)\b'
+
+  # --------------------
+  # LOW INTENT
+  # --------------------
+
+  - intent: "Fees / Requirements"
+    tier: "Low"
+    patterns:
+      - '\b(fee|fees|minimum balance|min balance|required deposit)\b'
+
+  - intent: "Safety"
+    tier: "Low"
+    patterns:
+      - '\b(fdic|insured|safe|safety)\b'
+
+  - intent: "General"
+    tier: "Low"
+    patterns:
+      - '\b(what is|how does|meaning|definition)\b'
+
+clustering:
+  model: "sentence-transformers/all-MiniLM-L6-v2"
+  n_clusters: 25
+  max_clusters: 40
+
+scoring:
+  intent_tiers:
+    High: [70, 100]
+    Medium: [40, 70]
+    Low: [10, 40]
+
+  weights:
+    cheap_cpc: 0.5
+    volume: 0.35
+    low_competition: 0.15
