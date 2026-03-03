@@ -34,7 +34,7 @@ def main():
         print(f"Found {len(input_files)} files")
 
         cmd = [
-            "python",
+            "python3",
             "kcp_pipeline.py",
             "--in",
             input_pattern,
